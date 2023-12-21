@@ -1,0 +1,4 @@
+main: server.c
+	gcc server.c -o lb31_server
+main: client.c
+	gcc client.c -o lb31_client

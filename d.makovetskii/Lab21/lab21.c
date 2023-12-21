@@ -1,23 +1,27 @@
-// 21. ѕищалка
-#include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <signal.h>
 
-int count = 0;  // счетчик сигналов
+int count = 0;
 
-void handleSIGQUIT() {
-    printf("\nSignal sound times: %d", count);
-    exit(0);
-}
-
-void handleSIGINT() {
+void sigint_handler() {
     printf("\a");
-    fflush(NULL);
+    printf("ѕрозвучал сигнал SIGINT\n");
     count++;
 }
 
+void sigquit_handler() {
+    printf("ѕрозвучал сигнал SIGQUIT %d раз(а)\n", count);
+    exit(0);
+}
+
 int main() {
-    signal(SIGINT, &handleSIGINT);  // издает звуковой сигнал на вашем терминале каждый раз, когда вы вводите символ, на который у вас настроена посылка сигнала SIGINT
-    signal(SIGQUIT, &handleSIGQUIT);  // ѕри получении SIGQUIT, она должна вывести сообщение, говор€щее, сколько раз прозвучал сигнал, и завершитьс€.
-    while (1);
+
+    while (1) {
+    signal(SIGINT, &sigint_handler);
+    signal(SIGQUIT, &sigquit_handler);
+
+    }
+
+    return 0;
 }

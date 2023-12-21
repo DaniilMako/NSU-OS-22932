@@ -9,7 +9,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <errno.h>
-#define SERVER "./qwerty123456"
+#define SERVER "./socket31"
 
 void print_upper(char* buf)
 {
